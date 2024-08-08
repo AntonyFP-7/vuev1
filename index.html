@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="decrement()">-</button>
+      {{counter}}
+      <button v-on:click="increment()">+</button>
+      <br />
+      <form action="" v-on:submit.prevent="addPais()">
+        <label for="">pais</label>
+        <br />
+        <input type="text" v-model="name" />
+        <br />
+        <label for="">Capital</label>
+        <br />
+        <input type="text" v-model="capital" />
+
+        <button>Agregar</button>
+      </form>
+      <br />
+      <ul>
+        <template v-for="(pais, index) in paises">
+          <li :key="index">{{index+1}} - {{pais.name}} - {{pais.capital}}</li>
+        </template>
+      </ul>
+      <p>hola {{name}}</p>
+
+      <h1 v-if="active">CODERFREE PLATAFORMA EDICATIVA</h1>
+      <h1 v-else>o no</h1>
+      <div v-if="type=='A'">A</div>
+      <div v-else-if="type=='B'">B</div>
+      <div v-else-if="type=='C'">C</div>
+      <div v-else>no ES</div>
+
+      <template v-if="active">
+        <h1>hrla lundo</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat
+          omnis, ullam tempora, sed atque numquam possimus rem nihil cumque
+          voluptate dolores illum. A, veritatis! Fuga maxime eos harum vero
+          minus!
+        </p>
+      </template>
+      <h1>hrla lundo</h1>
+      <p v-if="active">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat
+        omnis, ullam tempora, sed atque numquam possimus rem nihil cumque
+        voluptate dolores illum. A, veritatis! Fuga maxime eos harum vero
+        minus!
+      </p>
+      <p v-show="active">
+       show  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat
+        omnis, ullam tempora, sed atque numquam possimus rem nihil cumque
+        voluptate dolores illum. A, veritatis! Fuga maxime eos harum vero
+        minus!
+      </p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            counter: 0,
+            name: "",
+            capital: "",
+            paises: [
+              {
+                name: "España",
+                capital: "Madrid",
+              },
+              {
+                name: "Francia",
+                capital: "Paris",
+              },
+              {
+                name: "Alemania",
+                capital: "Berlin",
+              },
+            ],
+            active: true,
+            type: "Ct",
+          };
+        },
+        /*    mounted() {
+          setInterval(() => {
+            this.counter++;
+          }, 1000);
+        }, */
+        methods: {
+          decrement() {
+            this.counter--;
+          },
+          increment() {
+            this.counter++;
+          },
+          addPais() {
+            this.paises.push({
+              name: this.name,
+              capital: this.capital,
+            });
+            this.name = "";
+            this.capital = "";
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

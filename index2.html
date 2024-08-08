@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .text-red {
+        color: red;
+      }
+      .text-green {
+        color: green;
+      }
+      .text-blue {
+        color: blue;
+      }
+      .text-black {
+        color: black;
+      }
+      .mt-16{
+        margin-top: 14rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="color = 'red'">Rojo</button>
+      <button @click="color = 'green'">verde</button>
+      <button @click="color = 'blue'">Azul</button>
+      <p v-bind:class="'text-'+color">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam veniam
+        nesciunt exercitationem aperiam temporibus sint quo maxime tenetur
+        repellat laborum! Qui, a dolorem quaerat tempore culpa exercitationem
+        magni cumque omnis?
+      </p>
+      {{'text-'+color}}
+      <button @click="active= !active">
+        <span v-if="active">Desactivar</span>
+        <span v-else>Activar</span>
+      </button>
+      <p :class="colorClassComputed"  class="mt-16">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio eveniet,
+        pariatur adipisci deserunt cupiditate illum! Nemo totam accusantium ut
+        libero sapiente, commodi sunt quis obcaecati voluptatibus earum id
+        deserunt quasi.
+      </p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            color: "black",
+            active: true,
+          };
+        },
+        computed: {
+          colorClassComputed() {
+            return this.active ? "text-blue" : "text-red";
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
